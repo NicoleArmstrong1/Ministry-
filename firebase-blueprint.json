@@ -1,0 +1,88 @@
+{
+  "entities": {
+    "Comment": {
+      "title": "Comment",
+      "description": "A message sent in the live chat",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string", "description": "The content of the comment" },
+        "authorName": { "type": "string", "description": "Name of the sender" },
+        "authorUid": { "type": "string", "description": "UID of the sender" },
+        "timestamp": { "type": "string", "format": "date-time", "description": "When the comment was sent" },
+        "language": { "type": "string", "description": "The language of the comment" }
+      },
+      "required": ["text", "authorName", "authorUid", "timestamp"]
+    },
+    "LiveState": {
+      "title": "LiveState",
+      "description": "The global state of the live session",
+      "type": "object",
+      "properties": {
+        "isLive": { "type": "boolean" },
+        "currentMusic": { "type": "string" },
+        "currentAd": { "type": "string" },
+        "zoomLink": { "type": "string" },
+        "activeTab": { "type": "string", "enum": ["record", "music", "advert"] }
+      }
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "member"] }
+      },
+      "required": ["uid", "displayName", "email"]
+    },
+    "Music": {
+      "title": "Music",
+      "description": "Music track metadata",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "artist": { "type": "string" },
+        "url": { "type": "string" },
+        "addedBy": { "type": "string" }
+      },
+      "required": ["title", "url"]
+    },
+    "Advert": {
+      "title": "Advert",
+      "description": "Commercial advertisement metadata",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "addedBy": { "type": "string" }
+      },
+      "required": ["name", "imageUrl"]
+    }
+  },
+  "firestore": {
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Collection of live chat messages"
+    },
+    "/liveState/global": {
+      "schema": "LiveState",
+      "description": "Global state for the live session"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/music/{musicId}": {
+      "schema": "Music",
+      "description": "Collection of music tracks"
+    },
+    "/adverts/{advertId}": {
+      "schema": "Advert",
+      "description": "Collection of custom advertisements"
+    }
+  }
+}

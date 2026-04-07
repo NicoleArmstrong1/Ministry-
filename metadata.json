@@ -1,0 +1,5 @@
+{
+  "name": "Lightbearer V Ministry",
+  "description": "Interactive live ministry website with real-time chat, translations, and commercial advertisements.",
+  "requestFramePermissions": ["camera", "microphone"]
+}
